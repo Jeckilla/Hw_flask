@@ -27,8 +27,8 @@ class CreateAdv(AbstractAdv):
 
 
 class UpdateAdv(AbstractAdv):
-    title: Optional[str]
-    description: Optional[str]
+    title: Optional[str] = None
+    description: Optional[str] = None
 
 
 SCHEMA_CLASS = Type[CreateAdv | UpdateAdv]

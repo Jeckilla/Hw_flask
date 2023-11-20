@@ -71,6 +71,7 @@ class AdvView(views.MethodView):
     def delete(self, adv_id):
         adv = get_adv(adv_id)
         self.session.delete(adv)
+        self.session.commit()
         return jsonify({'status': 'OK'})
 
 
