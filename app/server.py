@@ -81,4 +81,4 @@ app.add_url_rule("/advertisements/<int:adv_id>", view_func=adv_view, methods=["G
 app.add_url_rule("/advertisements", view_func=adv_view, methods=["POST"])
 
 if __name__ == "__main__":
-    app.run(port=5002)
+    app.run()
