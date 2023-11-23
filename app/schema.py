@@ -5,6 +5,7 @@ from typing import Optional, Type
 class AbstractAdv(pydantic.BaseModel):
     title: str
     description: str
+    owner: str
 
     @pydantic.field_validator("title")
     @classmethod
@@ -24,11 +25,13 @@ class AbstractAdv(pydantic.BaseModel):
 class CreateAdv(AbstractAdv):
     title: str
     description: str
+    owner: str
 
 
 class UpdateAdv(AbstractAdv):
     title: Optional[str] = None
     description: Optional[str] = None
+    owner: Optional[str] = None
 
 
 SCHEMA_CLASS = Type[CreateAdv | UpdateAdv]

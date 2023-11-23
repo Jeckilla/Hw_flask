@@ -1,12 +1,10 @@
 import flask
-import requests
-from flask import views, jsonify, request, session
+from flask import views, jsonify, request
 from models import Session, Advertisement
 from sqlalchemy.exc import IntegrityError
 from errors import HttpError
 from schema import CreateAdv, UpdateAdv
 from tools import validate
-
 
 
 app = flask.Flask('app')
@@ -43,14 +41,12 @@ def add_adv(adv: Advertisement):
 
 
 class AdvView(views.MethodView):
-
     @property
     def session(self) -> Session:
         return request.session
 
-    def get(self, adv_id):
+    def get(self, adv_id: int):
         adv = get_adv(adv_id)
-
         return jsonify(adv.dict)
 
     def post(self):
@@ -67,7 +63,6 @@ class AdvView(views.MethodView):
             add_adv(adv)
         return jsonify({"id": adv.id})
 
-
     def delete(self, adv_id):
         adv = get_adv(adv_id)
         self.session.delete(adv)
@@ -81,4 +76,4 @@ app.add_url_rule("/advertisements/<int:adv_id>", view_func=adv_view, methods=["G
 app.add_url_rule("/advertisements", view_func=adv_view, methods=["POST"])
 
 if __name__ == "__main__":
-    app.run()
+    app.run(port=5000)

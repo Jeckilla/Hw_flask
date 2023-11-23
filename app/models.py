@@ -1,25 +1,20 @@
 import os
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy.orm import Mapped, mapped_column
-from sqlalchemy import String, DateTime, func
 import datetime
 
+from sqlalchemy import create_engine, String, DateTime, func
+from sqlalchemy.orm import sessionmaker, DeclarativeBase, Mapped, mapped_column
 
 
-
-POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", 'lenochka77')
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", '123345')
 POSTGRES_USER = os.getenv("POSTGRES_USER", 'postgres')
 POSTGRES_DB = os.getenv("POSTGRES_DB", 'articles')
 POSTGRES_HOST = os.getenv("POSTGRES_HOST", '127.0.0.1')
-POSTGRES_PORT = os.getenv("POSTGRES_PORT", '5431')
+POSTGRES_PORT = os.getenv("POSTGRES_PORT", '5432')
 
 
 PG_DSN = f"postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 
 engine = create_engine(PG_DSN, pool_pre_ping=True)
-
 Session = sessionmaker(bind=engine)
 
 
@@ -28,7 +23,7 @@ class Base(DeclarativeBase):
 
 
 class Advertisement(Base):
-    __tablename__ = "app_users"
+    __tablename__ = "articles"
 
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String(100), unique=True, index=True, nullable=False)
@@ -47,6 +42,4 @@ class Advertisement(Base):
         }
 
 
-
 Base.metadata.create_all(bind=engine)
-
