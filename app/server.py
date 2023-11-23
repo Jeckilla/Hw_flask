@@ -76,4 +76,8 @@ app.add_url_rule("/advertisements/<int:adv_id>", view_func=adv_view, methods=["G
 app.add_url_rule("/advertisements", view_func=adv_view, methods=["POST"])
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     app.run(port=5000)
+=======
+    app.run(port=5002)
+>>>>>>> parent of 4ffdb75 (Added requirements.txt)

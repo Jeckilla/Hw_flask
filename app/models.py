@@ -5,9 +5,14 @@ from sqlalchemy import create_engine, String, DateTime, func
 from sqlalchemy.orm import sessionmaker, DeclarativeBase, Mapped, mapped_column
 
 
+<<<<<<< HEAD
 POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", '123345')
+=======
+
+POSTGRES_PASSWORD = os.getenv("POSTGRES_PASSWORD", 'postgres')
+>>>>>>> parent of 4ffdb75 (Added requirements.txt)
 POSTGRES_USER = os.getenv("POSTGRES_USER", 'postgres')
-POSTGRES_DB = os.getenv("POSTGRES_DB", 'articles')
+POSTGRES_DB = os.getenv("POSTGRES_DB", 'app')
 POSTGRES_HOST = os.getenv("POSTGRES_HOST", '127.0.0.1')
 POSTGRES_PORT = os.getenv("POSTGRES_PORT", '5432')
 
